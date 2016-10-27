@@ -1,0 +1,53 @@
+﻿<h3>登入</h3>
+
+<p>
+    歡迎使用長安醫院後台管理系統,請先登入!
+</p>
+
+<form ng-submit="signIn()">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="alert alert-success" ng-show="message == 'ended'"><h4>Due to inactivity, you were logged out automatically.</h4></div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="Email">帳號</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" ng-model="username" placeholder="Username" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="Password">密碼</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="password" ng-model="password" placeholder="Password" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input class="btn btn-primary margin-top-5" type="submit" value="登入" ng-disabled="isDisabled" />
+                        <img src="Assets/img/progress.gif" width="30" height="30" ng-show="isDisabled" />
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="row alert alert-danger margin-top-5" ng-show="showMessage">
+                <button type="button" class="btn btn-danger btn-circle">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+
+                {{message}}
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,90 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">
+            院方人員詳細資料 <small>用來更新院方人員資料及設定所屬群組!</small>
+        </h1>
+    </div>
+</div>
+
+<form novalidate="novalidate" class="form-horizontal">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="id">編號</label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="id" ng-model="user.id" ng-readonly="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="userName">
+                    帳號
+                </label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="userName" ng-model="user.userName" readonly/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="cName">
+                    姓名
+                </label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="cName" ng-model="user.cName" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="email">
+                    Email
+                </label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="email" ng-model="user.email"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="role">
+                    角色
+                </label>
+                <div class="col-md-9">
+                    <span ng-repeat="r in roles">
+                        <label>
+                            <input type="radio" name="role" id="{{r.name}}" value="{{r.name}}" ng-model="user.role">&nbsp; {{r.name}} &nbsp;
+                        </label>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="groups">
+                    群組
+                </label>
+                <div class="col-md-9">
+                    <label ng-repeat="g in groups ">
+                        <input type="checkbox" checklist-model="user.groups" value="groups" checklist-value="g.id">&nbsp; {{g.name}} &nbsp;
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="groups">
+                    社群通訊群組
+                </label>
+                <div class="col-md-9">
+                    <label ng-repeat="g in chatgroups ">
+                        <input type="checkbox" checklist-model="user.chatgroups" value="chatgroups" checklist-value="g.id">&nbsp; {{g.name}} &nbsp;
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <!-- user-detail.html: -->
+                    <a ng-click="cancel()" class="btn btn-default">取消</a>
+                    <a ng-click="updateUser()" class="btn btn-primary">更新使用者資料</a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+
+

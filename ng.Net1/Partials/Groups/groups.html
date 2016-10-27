@@ -1,0 +1,82 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">
+            群組資料維護 <small>用來查詢與維護院方與 APP 群組資料!</small>
+</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="panel panel-info">
+        <div class="panel-heading">條件</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <form class="form-inline">
+                    <label for="condition">群組類別</label>
+                    <select class="btn btn-default" ng-model="groupItem.id"
+                            data-ng-options="a.id as a.name for a in groupItems"
+                            ng-change="query();"></select>
+
+                    <button type="submit" class="btn btn-default" id="btnSearch" ng-click="query();">查詢</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="panel panel-success">
+        <div class="panel-heading">查詢結果 - 共 {{ data.length }} 筆</div>
+        <div class="panel-body">
+            <div class="col-md-12">
+                <div class="row">
+                    <table class="table table-bordered table-hover table-condensed">
+                        <tr style="font-weight: bold">
+                            <td style="width:5%"></td>
+                            <td style="width:35%">Name</td>
+                            <td style="width:20%" ng-hide="1">Value</td>
+                            <td style="width:25%">Edit</td>
+                        </tr>
+                        <tr ng-repeat="user in data">
+                            <td>
+                                <span>
+                                    {{ $index + 1 }}
+                                </span>
+                            </td>
+                            <td>
+                                <!-- editable username (text with validation) -->
+                                <span editable-text="user.name" e-name="name" e-form="rowform" onbeforesave="checkName($data, user.id)" e-required>
+                                    {{ user.name || '已取消' }}
+                                </span>
+                            </td>
+                            <td ng-hide="1">
+                                <!-- editable username (text with validation) -->
+                                <span  e-name="value" e-form="rowform" readonly>
+                                    {{ user.value }}
+                                </span>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <!-- form -->
+                                <form editable-form name="rowform" onbeforesave="save($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success" title="儲存"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default" title="取消"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button class="btn btn-primary" ng-click="rowform.$show()" title="修改"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+                                    <button class="btn btn-danger" ng-click="delete(user.id)" title="刪除"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button class="btn btn-default" ng-click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增群組</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+                
+
+

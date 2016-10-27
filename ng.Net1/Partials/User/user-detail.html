@@ -1,0 +1,118 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">
+            App 使用者詳細資料 <small>用來更新 App 使用者資料及設定所屬群組!</small>
+        </h1>
+    </div>
+</div>
+
+<form novalidate="novalidate" class="form-horizontal">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="id">編號</label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="id" ng-model="user.id" ng-readonly="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="name">
+                    姓名
+                </label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="name" ng-model="user.name" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="social_id">
+                    身份証號(後六碼)
+                </label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="social_id" ng-model="user.social_id" ng-readonly="true"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="nickname">
+                    匿稱
+                </label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="nickname" ng-model="user.nickname" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="phone">
+                    電話
+                </label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="phone" ng-model="user.phone" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="phone">
+                    群組
+                </label>
+                <div class="col-md-9">
+                    <label ng-repeat="g in groups">
+                        <input type="checkbox" checklist-model="user.groups" value="groups" checklist-value="g.id"> {{g.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="groups">
+                    社群通訊群組
+                </label>
+                <div class="col-md-9">
+                    <label ng-repeat="g in chatgroups ">
+                        <input type="checkbox" checklist-model="user.chatgroups" value="chatgroups" checklist-value="g.id">&nbsp; {{g.name}} &nbsp;
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <!-- user-detail.html: -->
+                    <a ng-click="cancel()" class="btn btn-default">取消</a>
+                    <a ng-click="updateUser()" class="btn btn-primary">更新使用者資料</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">密碼重置</a>
+                    <!--ng-click="resetPassword()"-->
+                </div>
+            </div>
+        </div>
+       
+        <div class="container">
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">密碼重置</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-md-6 control-label" for="resetPassword">
+                                    輸入新密碼
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input class="form-control" type="text" id="resetPassword" ng-model="user.resetPassword" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="resetPassword()">確定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+   
+</form>
+
+
+
+

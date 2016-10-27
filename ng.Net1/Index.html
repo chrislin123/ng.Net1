@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link id="linkRoot" href="/EveranHospital/" />
+    <title>Falcota Admin</title>
+    <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <!-- bootstrap Styles-->
+    <link href="./Assets/Bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <!-- font-awesome Styles-->
+    <link href="./assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- awesome-bootstrap-checkbox Styles-->
+    <link href="./assets/css/build.css" rel="stylesheet" />
+    <!-- xeditable Styles-->
+    <link href="./assets/css/xeditable.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="./assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="./assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- Angular Flash-->
+    <link href="./Assets/css/angular-flash.css" rel="stylesheet" />
+    <!-- Angular Toaster
+    <link href="./Assets/ng/angular-toaster.min.css" rel="stylesheet" />-->
+    <link href="./Assets/ng/ngToast/dist/ngToast.min.css" rel="stylesheet" />
+    <style>
+        div[app] { margin: 10px; }
+.table {width: 100% }
+form[editable-form] > div {margin: 10px 0;}
+    </style>
+</head>
+<body ng-controller="falcotaAdminCtrl">
+    <toast></toast>
+    <!--<toaster-container toaster-options="{'time-out': 3000}"></toaster-container>-->
+    <div id="wrapper" class="container-fluid ng-cloak" >
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" >
+                <img src="./Assets/img/logo.jpg" /></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+
+               
+                <!-- /.dropdown -->
+                <li class="dropdown" ng-show="loggedIn">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="" ng-click="UserProfile()"><i class="fa fa-user fa-fw"></i> 使用者基本資料</a>
+</li>
+                        <li>
+                            <a href="#/adminuser-password"><i class="fa fa-gear fa-fw"></i> 更改密碼</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="javascript:;" ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>登出</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+                <li ng-hide="loggedIn"><a href="#/signin"><i class="fa fa-user fa-fw"></i>登入</a></li>
+                <!-- /.sign in -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <!--<li><a href="index.html"><i class="fa fa-dashboard"></i> 儀表版</a></li>
+                    <li ng-show="false"><a href="#/todomanager"><i class="fa fa-fw fa-file"></i>Todo Manager</a></li>
+                    <li ng-show="loggedIn"><a href="#/adminuser-list"><i class="fa fa-fw fa-file"></i>醫療人員帳號管理</a></li>
+                    <li ng-show="loggedIn" class="active-menu" ><a href="#/user-list"><i class="fa fa-fw fa-file"></i>病患人員帳號管理</a></li>
+                    <li ng-show="loggedIn"><a href="#/news-list"><i class="fa fa-fw fa-file"></i>最新消息維護</a></li>
+                    <li ng-show="loggedIn" ><a href="#/frontend_log"><i class="fa fa-fw fa-file"></i>APP傳輸記錄查詢</a></li>
+                    <li ng-show="loggedIn"><a href="#/hospital_log"><i class="fa fa-fw fa-file"></i>醫院API傳輸記錄查詢</a></li>
+                    <li ng-show="loggedIn"><a href="#/groups"><i class="fa fa-fw fa-file"></i>群組資料維護</a></li>
+                    <li ng-show="loggedIn"><a href="#/register"><i class="fa fa-fw fa-file"></i>Register</a></li>
+                    <li><a href="#/home"><i class="fa fa-fw fa-file"></i>版本修定記錄</a></li>
+                    <li><a href="empty.html"><i class="fa fa-fw fa-file"></i> 關於長安醫院 </a></li>-->
+                    
+                    <li ng-repeat="menu in menus" ng-show="menu.isVisible" 
+                        ng-click="onMenuClick(menu)" 
+                        class="{{menu.class}}"
+                        ng-class="{active_menu:activedMenu == menu}">
+                        <a href="{{menu.path}}">
+                        <i class="{{menu.icon}}"></i>
+                        {{menu.name}}
+                        </a>
+                    </li>
+
+                </ul>
+</div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div ng-view>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-11">
+                        <footer class="text-right">
+                            <p>&copy; {{ date | date:'yyyy' }} - Falcota Inc.</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+
+    <!-- ng Scripts-->
+    <script src="./Assets/ng/angular.min.js"></script>
+    <script src="./Assets/ng/angular-route.min.js"></script>
+    <script src="./Assets/ng/angular-cookies.min.js"></script>
+    <script src="./Assets/ng/angular-resource.min.js"></script>
+    <script src="./Assets/ng/angular-animate.min.js"></script>
+    <script src="./Assets/ng/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="./Assets/ng/checklist-model.js"></script>
+    <!-- angular-messages -->
+    <script src="./Assets/ng/angular-message.js"></script>
+    <!-- angular-flash.js -->
+    <script src="./Assets/ng/angular-flash.js"></script>
+    <!-- angular-flash.js -->
+    <script src="./Assets/ng/angular-flash.js"></script>
+    <!-- angular-toaster.js 
+    <script src="./Assets/ng/angular-toaster.min.js"></script>-->
+    <script src="./Assets/ng/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="./Assets/ng/ngToast/dist/ngToast.min.js"></script>
+    
+    
+   
+    <!-- App Scripts-->
+    <script src="./Assets/app/app.js"></script>
+    <!-- Factorys-->
+    <script src="./Assets/app/factorys/factorys.js"></script>
+    <!-- Filters-->
+    <script src="./Assets/app/filters/filters.js"></script>
+    
+    <!-- jQuery Scripts-->
+    <script src="./Assets/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Scripts-->
+    <script src="./Assets/Bootstrap/js/bootstrap.js"></script>
+    <!-- JS Scripts-->
+    <script src="./Assets/js/jquery.metisMenu.js"></script>
+    <!-- Angular-xeditable -->
+    <script src="./Assets/js/xeditable.min.js"></script>
+    <!-- Mirror Js -->
+    <script src="./Assets/js/morris/morris.js"></script>
+    <script src="./Assets/js/morris/raphael-2.1.0.min.js"></script>
+    <!-- Custom Js -->
+    <script src="./Assets/js/custom-scripts.js"></script>
+
+
+    <!-- Controllers -->
+    <script src="Index.ctrl.js"></script>
+    <script src="./Partials/Dashboard/Dashboard.ctrl.js"></script>
+    <script src="./Partials/Chat/chat-list.ctrl.js"></script>
+    <script src="./Partials/News/news-list.ctrl.js"></script>
+    <script src="./Partials/AdminUser/user-password.ctrl.js"></script>
+    <script src="./Partials/AdminUser/user-creation.ctrl.js"></script>
+    <script src="./Partials/AdminUser/user-detail.ctrl.js"></script>
+    <script src="./Partials/AdminUser/user-list.ctrl.js"></script>
+    <script src="./Partials/Log/frontend_log.ctrl.js"></script>
+    <script src="./Partials/Log/hospital_log.ctrl.js"></script>
+    <script src="./Partials/User/user-detail.ctrl.js"></script>
+    <script src="./Partials/User/user-list.ctrl.js"></script>
+    <script src="./Partials/SignIn/SignIn.ctrl.js"></script>
+    <script src="./Partials/Groups/groups.ctrl.js"></script>
+    <script src="./Partials/Groups/chatgroups.ctrl.js"></script>
+
+    
+</body>
+</html>

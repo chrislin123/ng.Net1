@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="WWW/EveranHospital" />
+  <setParameter name="applicationDB-Web.config Connection String" value="server=192.168.66.81;UserId=falcota_delete;Password=YUSlxDa6EAZ0ufmwsC6drwqnmQcc2g;database=falcota;CharSet=utf8;Persist Security Info=True;convert zero datetime=True" />
+  <setParameter name="falcota_mssqlDB-Web.config Connection String" value="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\aspnet-ng.Net1-20140528085212.mdf;Initial Catalog=aspnet-ng.Net1-20140528085212;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;User Instance=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" />
+  <setParameter name="falcota_mysqlDB_CRU-Web.config Connection String" value="server=192.168.66.81;UserId=falcota_delete;Password=YUSlxDa6EAZ0ufmwsC6drwqnmQcc2g;database=falcota;CharSet=utf8;Persist Security Info=True;convert zero datetime=True" />
+  <setParameter name="falcota_mysqlDB_RD-Web.config Connection String" value="server=192.168.66.81;UserId=falcota_delete;Password=YUSlxDa6EAZ0ufmwsC6drwqnmQcc2g;database=falcota;CharSet=utf8;Persist Security Info=True;convert zero datetime=True" />
+  <setParameter name="ng.Net1.Models.BaseDBContext-Web.config Connection String" value="ng.Net1.Models.BaseDBContext_ConnectionString" />
+  <setParameter name="WebApplication6.MySqlHistoryContext-Web.config Connection String" value="WebApplication6.MySqlHistoryContext_ConnectionString" />
+</parameters>

@@ -1,0 +1,79 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">
+            儀表版 <small>一些有關本網站的相關圖表...</small>
+        </h1>
+    </div>
+</div>
+
+<form novalidate="novalidate" class="form-inline" role="form">
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-primary text-center no-boder bg-color-green">
+                <div class="panel-body">
+                    <i class="fa fa-bar-chart-o fa-5x"></i>
+                    <h3>{{data.today_frontend_log_count}}</h3>
+                </div>
+                <div class="panel-footer back-footer-green">
+                    今日使用次數
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-primary text-center no-boder bg-color-blue">
+                <div class="panel-body">
+                    <i class="fa fa-bar-chart-o fa-5x"></i>
+                    <h3>{{data.frontend_log_totalcount}}</h3>
+                </div>
+                <div class="panel-footer back-footer-blue">
+                    APP 累積傳輸量
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-primary text-center no-boder bg-color-red">
+                <div class="panel-body">
+                    <i class="fa fa fa-users fa-5x"></i>
+                    <h3>{{data.adminuser_totalcount}}</h3>
+                </div>
+                <div class="panel-footer back-footer-red">
+                    醫療人員人數
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-primary text-center no-boder bg-color-brown">
+                <div class="panel-body">
+                    <i class="fa fa-users fa-5x"></i>
+                    <h3>{{data.user_totalcount}}</h3>
+                </div>
+                <div class="panel-footer back-footer-brown">
+                    APP 會員人數
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        每日使用量
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-bar-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        會員成長人數
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris-area-chart"></div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</form>

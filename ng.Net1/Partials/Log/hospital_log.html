@@ -1,0 +1,97 @@
+﻿<style>
+.table {
+  table-layout:fixed;
+}
+
+.table td {
+  word-wrap:break-word;
+}
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">
+            院方傳輸記錄查詢 <small>用來查詢院方傳輸記錄及相關資訊!</small>
+        </h1>
+    </div>
+</div>
+
+<form novalidate="novalidate" class="form-inline" role="form">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">查詢</div>
+                <div class="panel-body">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="input-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" id="keyWord" ng-model="keyWord">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" ng-click="QueryData();"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="text-right">
+                        <label for="condition">查詢期間</label>
+                        <select class="btn btn-default" ng-model="datetimeRange.id"
+                                data-ng-options="a.id as a.name for a in datetimeRangeItem" 
+                                ng-change="datetimeRangeChanged();">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">查詢結果 - 共 {{ data.count }} 筆</div>
+                <div class="panel-body">
+                  
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table wrap-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:3%">ID</th>
+                                        <th style="width:15%">路徑/方法/狀態</th>
+                                        <th>參數/回應</th>
+                                        <th style="width:10%">Cookie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="d in data.items">
+                                        <td>{{ d.id }}</td>
+                                        <td>
+                                            <pre><B>路徑:</B>{{ d.path }}</pre>
+                                            <pre><B>方法:</B>{{ d.method }}</pre>
+                                            <pre><B>狀態:</B>{{ d.statuscode }}</pre>
+                                            <pre><B>IP:</B>{{ d.ip }}</pre>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <pre><B>參數:</B><BR />{{ d.param | string2JsonFilter }}</pre>
+                                            </div>
+
+                                            <div>
+                                                <pre><B>回應:</B><BR />{{ d.response | string2JsonFilter }}</pre>
+                                            </div>
+                                        </td>
+                                        <td style="word-wrap:break-word;"><pre>{{ d.cookie }}</pre></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-center">
+                                <uib-pagination data-total-items="totalItems" ng-model="currentPage"
+                                                data-max-size="NumberOfPageButtons" class=" pagination-sm"
+                                                data-boundary-links="true" data-rotate="false"
+                                                ng-change="pageChanged()" data-items-per-page="recordsPerPage"></uib-pagination>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                  
+
+
+                </div>
+            </div>
+        </div>
+</form>
